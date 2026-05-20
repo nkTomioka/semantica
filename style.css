@@ -6,7 +6,8 @@ box-sizing: border-box;
 
 body {
 font-family: 'Courier New', Courier, monospace;
-background-color: white;
+background-color: #202329;
+color: white;
 }
 
 header {
@@ -14,17 +15,19 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 20px;
+font-family: cursive;
 }
 
 header h1 {
 
 background-color: greenyellow;
 padding: 5px;
+color: black;
 }
 
-header div {
-display: flex;
-gap: 10px;
+.pesquisa {
+    display: flex;
+    gap: 10px;
 }
 
 section {
@@ -34,47 +37,63 @@ margin-bottom: 30px;
 }
 
 section h2 {
-background-color: whitesmoke;
+background-color: black;
 padding: 5px 20px;
+color: greenyellow;
+}
+
+input {
+padding: 10px;
+border: none;
+border-radius: 5px;
+width: 200px;
+}
+
+button {
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+background-color: greenyellow;
+cursor: pointer;
+font-family: cursive;
 }
 
 main {
 display: flex;
 justify-content: center;
 align-items: center;
-gap: 40px;
+height: 85vh;
+}
+
+.card {
+background-color: gray;
+padding: 20px;
+border-radius: 10px;
+width: 350px;
 }
 
 #foto {
-width: 350px;
-height: 350px;
-background-color: white;
+width: 100%;
+border-radius: 10px;
 }
 
 .specs {
+    margin-top: 20px;
 display: flex;
 flex-direction: column;
-gap: 25px;
+gap: 10px;
 }
 
 .specs p {
 width: 250px;
-background-color: black;
-padding: 8px;
-text-align: center;
+background-color: white;
+padding: 10px;
+border-radius: 5px;
+color: black;
 }
 
 .botoes {
+margin-top: 20px;
 display: flex;
 justify-content: space-between;
-}
-
-button {
-    cursor: pointer;
-    padding: 5px 10px;
-}
-
-p {
-    color: black;
-    display: block;
 }

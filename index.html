@@ -10,10 +10,9 @@
     <header>
    <h1>Rick and Morty</h1>
 
-<div>
-<input type="text" placeholder="Procurar Personagem">
-<button>Buscar</button>
-
+<div class="pesquisa">
+<input type="text" id="input" placeholder="Procurar Personagem">
+<button onclick="buscarPorId()">Buscar</button>
 </div>
     </header>
 
@@ -23,21 +22,21 @@
 
 <main>
 
-<div class="imagem">
-    <img id="foto" src="">
-</div>
+<div class="card">
+    <img id="foto">
 
-<div class="specs"></div>
+<div class="specs">
 
-<p id="Nome"></p>
-<p id="Status"></p>
-<p id="Especie"></p>
-<p id="Genero"></p>
+<p id="nome"></p>
+<p id="status"></p>
+<p id="especie"></p>
+<p id="genero"></p>
 
 <div class="botoes">
 <button onclick="proximo()">Avançar</button>
 <button onclick="anterior()">Voltar</button>
-</div>
+    
+    </div>
 
     </div>
 
