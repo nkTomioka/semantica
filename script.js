@@ -1,9 +1,13 @@
 let id = 1
-let max = 826
-async function buscarPersonagem() {
-let resposta = await fetch("https://rickandmortyapi.com/api/character/220")
+async function mostrarPersonagem(url) {
+let resposta = await fetch("https://rickandmortyapi.com/api/character/1")
 let dados = await resposta.json()
+if(dados.results) {
+    dados = dados.results[0]
+}
 
+
+id = dados.id
 
 document.getElementById("foto").src = dados.image
 document.getElementById("nome").innerHTML = "Nome: " + dados.name
@@ -13,29 +17,37 @@ document.getElementById("genero").innerHTML = "Genero: " + traduzirGenero(dados.
  } 
  
  function proximo() {
-    if(id < max){
         id++
-        buscarPersonagem()
+        mostrarPersonagem(
+            `https://rickandmortyapi.com/api/character/${id}`
+        )
+      
     }
- }
 
  function anterior() {
 if(id > 1) {
     id--
-    buscarPersonagem()
+    mostrarPersonagem(
+        `https://rickandmortyapi.com/api/character/${id}`
+    )
    }
 }
 
-function buscarPorId() {
-    id = document.getElementById("input").value
+function buscar() {
+   let valor = document.getElementById("input").value
 
-    if(valorInput >= 1 && valorInput <= max) {
-id = valorInput
-buscarPersonagem()
-    }else{
-        alert("Digite um ID entre 1 e 826")
+    if(Number(valor))
+        id = valor
+
+mostrarPersonagem(
+    `https://rickandmortyapi.com/api/character/${id}`
+) 
+    } else {
+        mostrarPersonagem(
+            `https://rickandmortyapi.com/api/character/${valor}`
+        )
     }
-}
+
 
 
 function traduzirStatus(status) {
@@ -81,6 +93,8 @@ return "Desconhecido"
 
 
 
-buscarPersonagem()
+mostrarPersonagem(
+    `https://rickandmortyapi.com/api/character/1`
+)
 
 
