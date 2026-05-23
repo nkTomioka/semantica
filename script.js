@@ -1,6 +1,6 @@
 let id = 1
 async function mostrarPersonagem(url) {
-let resposta = await fetch("https://rickandmortyapi.com/api/character/1")
+let resposta = await fetch("https://rickandmortyapi.com/api/character/4")
 let dados = await resposta.json()
 if(dados.results) {
     dados = dados.results[0]
@@ -17,6 +17,7 @@ document.getElementById("genero").innerHTML = "Genero: " + traduzirGenero(dados.
  } 
  
  function proximo() {
+    console.log("clicou")
         id++
         mostrarPersonagem(
             `https://rickandmortyapi.com/api/character/${id}`
@@ -36,18 +37,18 @@ if(id > 1) {
 function buscar() {
    let valor = document.getElementById("input").value
 
-    if(Number(valor))
+    if(Number(valor)) {
         id = valor
 
 mostrarPersonagem(
     `https://rickandmortyapi.com/api/character/${id}`
 ) 
-    } else {
+   }   else {
         mostrarPersonagem(
             `https://rickandmortyapi.com/api/character/${valor}`
         )
     }
-
+}
 
 
 function traduzirStatus(status) {
