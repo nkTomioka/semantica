@@ -1,7 +1,17 @@
 let id = 1
 async function mostrarPersonagem(url) {
-let resposta = await fetch("https://rickandmortyapi.com/api/character/4")
+
+    try {
+
+let resposta = await fetch(url)
 let dados = await resposta.json()
+
+if(dados.error) {
+    alert("Personagem não encontrado!")
+    return
+}
+
+
 if(dados.results) {
     dados = dados.results[0]
 }
@@ -12,19 +22,24 @@ id = dados.id
 document.getElementById("foto").src = dados.image
 document.getElementById("nome").innerHTML = "Nome: " + dados.name
 document.getElementById("status").innerHTML = "Status: " + traduzirStatus(dados.status)
-document.getElementById("especie").innerHTML = "Especie: " + traduzirEspecie(dados.species)
-document.getElementById("genero").innerHTML = "Genero: " + traduzirGenero(dados.gender)
+document.getElementById("especie").innerHTML = "Espécie: " + traduzirEspecie(dados.species)
+document.getElementById("genero").innerHTML = "Gênero: " + traduzirGenero(dados.gender)
  } 
- 
+
+ catch(erro) {
+    alert("Erro ao carregar personagem!")
+    console.log(erro)
+ }
+}
+ // avançar
  function proximo() {
-    console.log("clicou")
         id++
         mostrarPersonagem(
             `https://rickandmortyapi.com/api/character/${id}`
         )
       
     }
-
+// voltar
  function anterior() {
 if(id > 1) {
     id--
@@ -33,24 +48,25 @@ if(id > 1) {
     )
    }
 }
-
+// pesquisa
 function buscar() {
    let valor = document.getElementById("input").value
 
     if(Number(valor)) {
         id = valor
-
+// buscar por id
 mostrarPersonagem(
     `https://rickandmortyapi.com/api/character/${id}`
 ) 
    }   else {
+    // buscar pelo nome
         mostrarPersonagem(
-            `https://rickandmortyapi.com/api/character/${valor}`
+            `https://rickandmortyapi.com/api/character/?name=${valor}`
         )
     }
 }
 
-
+// traduzir as informações
 function traduzirStatus(status) {
 if(status == "Alive") {
     return "Vivo"
@@ -76,6 +92,22 @@ if(especie == "Humanoid") {
 if(especie == "Robot") {
     return "Robô"
 }
+
+if(especie == "Mythological Creature") {
+    return "Criatura Mitológica"
+}
+
+if(especie == "Disease") {
+    return "Doença"
+}
+
+if(especie == "unknown") {
+    return "Desconhecido"
+}
+
+if(especie == "Poopybutthole") {
+    return "B.C"
+}
 return especie
 }
 
@@ -95,7 +127,7 @@ return "Desconhecido"
 
 
 mostrarPersonagem(
-    `https://rickandmortyapi.com/api/character/1`
+    "https://rickandmortyapi.com/api/character/1"
 )
 
 
